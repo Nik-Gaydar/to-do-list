@@ -64,7 +64,7 @@
 .todo__list {
   --todoListRowGap: 8px;
 
-  display: flex;
+  display: grid;
   row-gap: var(--todoListRowGap);
 }
 
