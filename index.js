@@ -14,6 +14,25 @@ class Todo {
     itemDeleteButton: '[data-js-todo-item-delete-button]',
     emptyMessage: '[data-js-todo-empty-message]',
   }
+
+  stateClasses = {
+    isVisible: 'is-visible',
+    isDisappearing: 'is-disappearing',
+  }
+
+  localStorageKey = 'todo-items'
+
+  constructor() {
+    this.rootElement = document.querySelector(this.selectors.root);
+    this.newTaskFormElement = this.rootElement.querySelector(this.selectors.newTaskForm);
+    this.newTaskInputElement = this.rootElement.querySelector(this.selectors.newTaskInput);
+    this.searchTaskFormElement = this.rootElement.querySelector(this.selectors.searchTaskForm);
+    this.searchTaskInputElement = this.rootElement.querySelector(this.selectors.searchTaskInput);
+    this.totalTasksElement = this.rootElement.querySelector(this.selectors.totalTasks);
+    this.deleteAllButtonElement = this.rootElement.querySelector(this.selectors.deleteAllButton);
+    this.listElement = this.rootElement.querySelector(this.selectors.list);
+    this.emptyMessageElement = this.rootElement.querySelector(this.selectors.emptyMessage);
+  }
 }
 
 new Todo()
