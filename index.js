@@ -32,6 +32,15 @@ class Todo {
     this.deleteAllButtonElement = this.rootElement.querySelector(this.selectors.deleteAllButton);
     this.listElement = this.rootElement.querySelector(this.selectors.list);
     this.emptyMessageElement = this.rootElement.querySelector(this.selectors.emptyMessage);
+    this.state = {
+      items: this.getItemsFromLocalStorage(),
+      filteredItems: null,
+      searchQuery: '',
+    }
+  }
+
+  getItemsFromLocalStorage() {
+
   }
 }
 
