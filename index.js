@@ -40,7 +40,17 @@ class Todo {
   }
 
   getItemsFromLocalStorage() {
+    const rawData = localStorage.getItem(this.localStorageKey)
 
+    if (!rawData) {
+      return [];
+    }
+
+    try {
+
+    } catch () {
+
+    }
   }
 }
 
