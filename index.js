@@ -43,14 +43,33 @@ class Todo {
     const rawData = localStorage.getItem(this.localStorageKey)
 
     if (!rawData) {
-      return [];
+      return []
     }
 
     try {
+      const parsedData = JSON.parse(rawData)
 
-    } catch () {
-
+      return Array.isArray(parsedData) ? parsedData : []
+    } catch {
+      console.error('Todo items parse error')
+      return []
     }
+  }
+
+  saveItemsToLocalStorage() {
+    localStorage.setItem(
+      this.localStorageKey,
+      JSON.stringify(this.state.items)
+    )
+  }
+
+  render() {
+    this.totalTasksElement.textContent = this.state.items.length
+// не понял как работает условие внутри
+    /*this.deleteAllButtonElement.classList.toggle(
+      this.stateClasses.isVisible,
+      this.state.items.length > 0
+    )*/
   }
 }
 
