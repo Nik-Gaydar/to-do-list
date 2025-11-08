@@ -65,11 +65,44 @@ class Todo {
 
   render() {
     this.totalTasksElement.textContent = this.state.items.length
-// не понял как работает условие внутри
-    /*this.deleteAllButtonElement.classList.toggle(
+
+    this.deleteAllButtonElement.classList.toggle(
       this.stateClasses.isVisible,
       this.state.items.length > 0
-    )*/
+    )
+
+    const items = this.state.filteredItems ?? this.state.items
+
+    this.listElement.innerHTML = items.map(({id, title, isChecked}) =>`
+      <li class="todo__item todo-item" data-js-todo-item>
+        <input
+          class="todo-item__checkbox"
+          id="${id}"
+          type="checkbox"
+          ${isChecked ? 'checked' : ''}
+          data-js-todo-item-checkbox
+        />
+        <label
+          for="${id}"
+          class="todo-item__label"
+          data-js-todo-item-label
+        >
+          ${title}
+        </label>
+        <button
+          class="todo-item__delete-button"
+          type="button"
+          aria-label="Delete"
+          title="Delete"
+          data-js-todo-item-delete-button
+        >
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M15 5L5 15M5 5L15 15" stroke="#757575" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </li>
+    `).join('')
+
   }
 }
 
