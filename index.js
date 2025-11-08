@@ -37,6 +37,7 @@ class Todo {
       filteredItems: null,
       searchQuery: '',
     }
+    this.render()
   }
 
   getItemsFromLocalStorage() {
@@ -103,6 +104,44 @@ class Todo {
       </li>
     `).join('')
 
+    const isEmptyFilteredItems = this.state.filteredItems?.length === 0
+    const isEmptyItems = this.state.items.length === 0
+
+    this.emptyMessageElement.textContent =
+      isEmptyFilteredItems ? 'Tasks not found'
+        : isEmptyItems ? 'There are no tasks yet'
+          : ''
+  }
+
+  addItem(title) {
+    this.state.items.push({
+      id: crypto?.randomUUID() ?? Date.now().toString(),
+      title,
+      isChecked: false,
+    })
+    this.saveItemsToLocalStorage()
+    this.render()
+  }
+
+  deleteItem(id) {
+    this.state.items = this.state.items.filter((item) => item.id !== id)
+    this.saveItemsToLocalStorage()
+    this.render()
+  }
+
+  toggleCheckedState(id) {
+    this.state.items = this.state.items.map((item) => {
+      if (item.id === id) {
+        return {
+          ...item,
+          isChecked: !item.isChecked,
+        }
+      }
+
+      return item
+    })
+    this.saveItemsToLocalStorage()
+    this.render()
   }
 }
 
